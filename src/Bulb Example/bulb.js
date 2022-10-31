@@ -3,6 +3,7 @@ class Bulb {
 
   constructor() {
     this.lives = 5;
+    this.output = null;
   }
 
   get isWorking() {
@@ -12,13 +13,13 @@ class Bulb {
   electrify(volts) {
     if (volts > Bulb.voltage) {
       this.lives = 0;
-      console.log('bang!');
+      this.output = 'bang!';
     } else if (volts < Bulb.voltage) {
       this.lives -= 1;
-      console.log('*shines dimly*');
+      this.output = '*shines dimly*';
     } else {
       this.lives -= 1;
-      console.log('*shiny shiny*');
+      this.output = '*shiny shiny*';
     }
   }
 }

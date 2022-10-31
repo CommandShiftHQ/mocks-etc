@@ -5,7 +5,6 @@ const { ChristmasBulb } = require('./christmas-bulb');
 describe('Lamp', () => {
   describe('constructor', () => {
     it('has the given bulb', () => {
-      
       const bulb = new Bulb()
       const lamp = new Lamp(bulb);
       expect(lamp.bulb).toBe(bulb);
@@ -24,19 +23,18 @@ describe('Lamp', () => {
       let lamp;
 
       beforeEach(() => {
-        const bulb = new Bulb();
+        bulb = new Bulb();
         lamp = new Lamp(bulb);
       });
 
       it('turns the light on', () => {
         lamp.switchOn();
-
         expect(lamp.isOn).toBe(true);
       });
 
       it('sends the correct voltage to the bulb', () => {
         lamp.switchOn();
-        expect(bulb.electrify).toHaveBeenCalledWith(120);
+        expect(bulb.output).toBe("*shiny shiny*");
       });
     });
 
@@ -45,7 +43,8 @@ describe('Lamp', () => {
       let lamp;
 
       beforeEach(() => {
-        const bulb = new Bulb();
+        bulb = new Bulb();
+        bulb.lives = 0;
         lamp = new Lamp(bulb);
       });
 
@@ -56,7 +55,7 @@ describe('Lamp', () => {
 
       it('does not send any voltage to the bulb', () => {
         lamp.switchOn();
-        expect(bulb.electrify).not.toHaveBeenCalled();
+        expect(bulb.output).toBeNull();
       });
     });
   });
@@ -66,16 +65,13 @@ describe('Lamp', () => {
     let lamp;
 
     beforeEach(() => {
-      const bulb = new Bulb();
-
+      bulb = new Bulb();
       lamp = new Lamp(bulb);
-
       lamp.switchOn();
     });
 
     it('turns the light off', () => {
       lamp.switchOff();
-
       expect(lamp.isOn).toBe(false);
     });
   });

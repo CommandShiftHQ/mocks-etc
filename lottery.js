@@ -1,4 +1,5 @@
-const { Lottery } = require('./src/lottery-class');
+// const { Lottery } = require('./src/lottery-class');
+const { Lottery } = require('./src/Lottery Example/lottery-class');
 
 const generator = {
   random: () => Math.ceil(Math.random() * 49),
